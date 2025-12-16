@@ -34,21 +34,16 @@ android {
     }
 
     buildTypes {
-        release {
-            isMinifyEnabled = true
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
-            // سيستخدم توقيع الإصدار إذا توفر عبر متغيرات البيئة في CI
-            if (signingConfigs.release.storeFile != null) {
-                signingConfig signingConfigs.release
-            }
-        }
-        debug {
-            isMinifyEnabled = false
-        }
+    release {
+	minifyEnabled false
+	shrinkResources false
+	proguardFiles getDefaultProguardFile(
+		'proguard-android-optimize.txt'
+	), 'proguard-rules.pro'
+	signingConfig signingConfigs.release
     }
+}
+
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
